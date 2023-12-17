@@ -31,6 +31,7 @@ pojemnosc_walizy = 2000
 pokemon = get_random_pokemon()
 waliza.append(pokemon.name)
 pojemnosc_walizy -= pokemon.weight
+print(f"Pozostało Ci {pojemnosc_walizy}")
 while True:
     if input("Grasz? Tak/Nie") == "Tak":
         pokemon = get_random_pokemon()

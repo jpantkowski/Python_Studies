@@ -25,3 +25,29 @@ def get_random_pokemon() -> Pokemon:
         f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}")
     pokemon_data = response.json()
     return Pokemon(pokemon_data["name"], pokemon_data["weight"])
+
+class PokeBlackJack:
+    def __init__(self):
+        self.capacity = 2000
+        self.suitcase = []
+
+    def get_pokemon(self):
+        pokemon = get_random_pokemon()
+        self.capacity -= pokemon.weight
+        self.suitcase.append(pokemon.name)
+        print(f"You found {pokemon.name}, it weights {pokemon.weight}")
+        print(f"You have {self.capacity} left")
+
+    @property
+    def is_lost(self):
+        return self.capacity < 0
+
+game = PokeBlackJack()
+game.get_pokemon()
+while input("Do You want to take another Pokemon with You? (y/n)") == "y":
+    game.get_pokemon()
+    if game.is_lost:
+        print("You lost :(")
+        break
+else:
+    print(f"Congrats, You took {game.suitcase} with You :>")
